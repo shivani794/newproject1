@@ -9,96 +9,130 @@
 
 //namespace UI
 //{
-//    class UI
+    
+
+//    public class UIShopping
 //    {
 //        static void Main(string[] args)
 //        {
+//            ShoppingBal bal = new ShoppingBal();
+
+//            Console.WriteLine("Welcome to Shopping");
+//            Console.WriteLine("1. Register");
+//            Console.WriteLine("2. Login");
+//            Console.WriteLine("3. View Cart");
+//            Console.WriteLine("4. Add to Cart");
+//            Console.WriteLine("5. Place Order");
+//            Console.WriteLine("Enter your choice (1-5):");
+
+//            try
 //            {
-//                businesslayer bal12 = new businesslayer();
+//                int select = Convert.ToInt32(Console.ReadLine());
 
-
-//                Console.WriteLine("Welcome to the Shopping Cart!");
-//                Console.WriteLine("1. Register New User");
-//                Console.WriteLine("2. View All Users");
-//                Console.WriteLine("3. View Product Information");
-//                Console.WriteLine("Enter your choice:");
-
-
-//                string input = Console.ReadLine();  // Get user input as a string
-//                int choice = 0;
-
-//                try
+//                if (select == 1)
 //                {
-//                    // Try converting the input string to an integer
-//                    choice = Convert.ToInt32(input);
+//                    // Register User
+//                    Console.WriteLine("Enter new user details:");
+//                    DataTable dt = bal.GetUsers();
+//                    DataRow dr = dt.NewRow();
 
-//                    // Proceed with your switch case logic
-//                    switch (choice)
+//                    Console.Write("Enter Name: ");
+//                    dr["Name"] = Console.ReadLine();
+
+//                    Console.Write("Enter Username: ");
+//                    dr["Username"] = Console.ReadLine();
+
+//                    Console.Write("Enter Password: ");
+//                    dr["Password"] = Console.ReadLine();
+
+//                    Console.Write("Enter Mobile Number: ");
+//                    dr["MobileNumber"] = Console.ReadLine();
+
+//                    dt.Rows.Add(dr);
+//                    bal.UpdateUsers(dt);
+//                    Console.WriteLine("User registered successfully!");
+//                }
+//                else if (select == 2)
+//                {
+//                    // Placeholder for Login User
+//                    Console.WriteLine("Login functionality is not yet implemented.");
+//                }
+//                else if (select == 3)
+//                {
+//                    // View Cart
+//                    Console.WriteLine("Your cart items:");
+//                    DataTable cart = bal.GetCart();
+//                    foreach (DataRow row in cart.Rows)
 //                    {
-//                        case 1:
-//                            Console.WriteLine("Registering a new user...");
-//                            DataSet registrationDataSet = bal12.RegisteringNew();
-//                            Console.WriteLine("New user registered successfully!");
-//                            Console.WriteLine("Updated Registration Table:");
-//                            DisplayDataSet(registrationDataSet, "registration");
-//                            break;
-
-//                        case 2:
-//                            Console.WriteLine("Fetching all users...");
-//                            DataSet usersDataSet = bal12.GetUsers();
-//                            Console.WriteLine("User Information:");
-//                            DisplayDataSet(usersDataSet, "users");
-//                            break;
-
-//                        case 3:
-//                            Console.WriteLine("Fetching product information...");
-//                            DataSet productDataSet = bal12.ProductInfo();
-//                            Console.WriteLine("Product Information:");
-//                            DisplayDataSet(productDataSet, "product");
-//                            break;
-
-//                        default:
-//                            Console.WriteLine("Invalid choice. Please select a valid option.");
-//                            break;
+//                        Console.WriteLine($"Cart ID: {row["cartid"]}, Product Name: {row["productname"]}, Quantity: {row["Quantity"]}, Price: {row["price"]}");
 //                    }
 //                }
-//                catch (FormatException)
+//                else if (select == 4)
 //                {
-//                    // Handle the case where the input cannot be converted to an integer
-//                    Console.WriteLine("Invalid input. Please enter a valid number.");
+//                    // Add to Cart
+//                    Console.WriteLine("Enter product details to add to cart:");
+//                    DataTable cart = bal.GetCart();
+//                    DataRow dr = cart.NewRow();
+
+//                    Console.Write("Enter Cart ID: ");
+//                    dr["cartid"] = Console.ReadLine();
+
+//                    Console.Write("Enter Product ID: ");
+//                    dr["productid"] = Console.ReadLine();
+
+//                    Console.Write("Enter Product Name: ");
+//                    dr["productname"] = Console.ReadLine();
+
+//                    Console.Write("Enter Quantity: ");
+//                    dr["Quantity"] = Console.ReadLine();
+
+//                    Console.Write("Enter Price: ");
+//                    dr["price"] = Console.ReadLine();
+
+//                    cart.Rows.Add(dr);
+//                    bal.UpdateCart(cart);
+//                    Console.WriteLine("Product added to cart successfully!");
 //                }
-
-//                Console.WriteLine("Press any key to exit...");
-//                Console.ReadKey();
-//            }
-//        }
-
-
-
-
-//        private static void DisplayDataSet(DataSet dataSet, string tableName)
-//        {
-           
-//            if (dataSet.Tables.Contains(tableName))
-//            {
-                
-//                DataTable table = dataSet.Tables[tableName];
-
-//                // Iterate through the rows and columns to display the data
-//                foreach (DataRow row in table.Rows)
+//                else if (select == 5)
 //                {
-//                    foreach (DataColumn column in table.Columns)
-//                    {
-//                        Console.Write($"{column.ColumnName}: {row[column]}  ");
-//                    }
-//                    Console.WriteLine(); // Move to the next line after displaying a row
+//                    // Place Order
+//                    Console.WriteLine("Enter order details:");
+//                    DataTable orders = bal.GetOrders();
+//                    DataRow dr = orders.NewRow();
+
+//                    Console.Write("Enter Order ID: ");
+//                    dr["orderid"] = Console.ReadLine();
+
+//                    Console.Write("Enter Username: ");
+//                    dr["username"] = Console.ReadLine();
+
+//                    Console.Write("Enter Total Cost: ");
+//                    dr["TotalCost"] = Console.ReadLine();
+
+//                    Console.Write("Enter Order Date: ");
+//                    dr["Orderdate"] = Console.ReadLine();
+
+//                    orders.Rows.Add(dr);
+//                    orders.AcceptChanges(); // Ensure changes are committed
+//                    Console.WriteLine("Order placed successfully!");
+//                }
+//                else
+//                {
+//                    Console.WriteLine("Invalid selection. Please enter a number between 1 and 5.");
 //                }
 //            }
-//            else
+//            catch (FormatException)
 //            {
-                
-//                Console.WriteLine($"Table '{tableName}' does not exist in the DataSet.");
+//                Console.WriteLine("Invalid input. Please enter a valid number.");
 //            }
+//            catch (Exception ex)
+//            {
+//                Console.WriteLine($"An error occurred: {ex.Message}");
+//            }
+
+//            Console.WriteLine("Thank you for using the shopping system. Press any key to exit.");
+//            Console.ReadKey();
 //        }
 //    }
+
 //}

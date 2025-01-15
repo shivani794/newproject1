@@ -1,83 +1,81 @@
-﻿//using System;
-//using System.Collections.Generic;
-//using System.Data;
-//using System.Linq;
-//using System.Text;
-//using System.Threading.Tasks;
-//using bal;
-//using dal;
-//using dal.DAL;
+﻿using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Linq;
+using System.Net.NetworkInformation;
+using System.Text;
+using System.Threading.Tasks;
+using dal;
 
-//namespace bal
-//{
-//    public class businesslayer
-//    {
-        //    {
-        //        GetUsers obj = new GetUsers();
-        //        register obj2 = new register();
-        //        DataTable dt = new DataTable();
-        //        public DataTable getusers()
-        //        {
-        //            dt = obj.getusers();
-        //            return dt;
-        //        }
-        //        public DataTable registering()
-        //        {
-        //            dt = obj.registeringnew();
-        //            return dt;
-        //        }
-        //        product obj1 = new product();
-        //        DataTable d11 = new DataTable();
-        //        public DataTable product()
-        //        {
+namespace bal
+{
 
-        //            d11 = obj1.productinfo();
-        //            return dt;
-        //        }
-        //    }
+    public class ShoppingBal
+    {
+        private ShoppingDal dal1 = new ShoppingDal();
+
+        public void RegisteringUser(string name, string username, string password,int mobilenumber)
+        {
+            
+            dal1.RegisterUserToDb(name, username,password, mobilenumber);
+        }
+        public bool LoginUser(string username, string password)
+        {
+            return dal1.ValidateLogin(username, password);
+        }
+
+        public void AddToCart(int productId, int quantity)
+        {
+           
+            dal1.AddToCart( productId, quantity);
+
+            Console.WriteLine("Product added to the cart successfully!");
+        }
+
+        public void PlaceOrder(string orderId, string username, string totalCost, string orderDate)
+        {
+            // Convert totalCost to decimal or float if needed
+            decimal cost = Convert.ToDecimal(totalCost);
+
+            // Call the DAL method to insert the order into the database
+            dal.InsertOrder(orderId, username, cost, orderDate);
+        }
+
+
+        // Get all users
+        //public DataTable GetUsers()
+        //{
+        //    return dal1.GetUsers();
         //}
-//        public DataSet RegisteringNew()
-//        {
-//            Register dal = new Register(); // Instantiate the DAL class inside the method
-//            return dal.RegisteringNew();
-//        }
 
+        //// Get all products
+        //public DataTable GetProducts()
+        //{
+        //    return dal1.GetProducts();
+        //}
 
-//        public DataSet GetUsers()
-//        {
-//            Register dal = new Register(); // Instantiate the DAL class inside the method
-//            return dal.GetUsers();
-//        }
+        //// Update user data
+        //public void UpdateUsers(DataTable userTable)
+        //{
+        //    dal1.UpdateUsers(userTable);
+        //}
 
+        //// Get cart items
+        //public DataTable GetCart()
+        //{
+        //    return dal1.GetCart();
+        //}
 
-//        public DataSet ProductInfo()
-//        {
-//            Register dal = new Register(); // Instantiate the DAL class inside the method
-//            return dal.ProductInfo();
-//        }
+        //// Update cart
+        //public void UpdateCart(DataTable cartTable)
+        //{
+        //    dal1.UpdateCart(cartTable);
+        //}
 
-
-//        public bool IsLoginSuccessful(string username, string password)
-//        {
-//            // Create instance of DAL and call CheckLogin method
-//            login loginDal = new login();
-//            DataSet loginResult = loginDal.CheckLogin(username, password);
-
-//            // Check if the DataSet contains the "LoginResult" table and has rows
-//            if (loginResult.Tables["LoginResult"].Rows.Count > 0)
-//            {
-//                // If there's at least one row, login is successful
-//                return true;
-//            }
-//            else
-//            {
-//                // If no row, login failed
-//                return false;
-//            }
-//        }
-//    }
-//}
-
-
-
-
+        //// Get all orders
+        //public DataTable GetOrders()
+        //{
+        //    return dal1.GetOrders();
+        //}
+    }
+}
