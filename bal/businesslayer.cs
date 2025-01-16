@@ -9,73 +9,32 @@ using dal;
 
 namespace bal
 {
-
     public class ShoppingBal
     {
         private ShoppingDal dal1 = new ShoppingDal();
-
-        public void RegisteringUser(string name, string username, string password,int mobilenumber)
+        public (DataTable registrationtable, DataTable Producttable, DataTable orderstable) BALGetAllData()
         {
-            
-            dal1.RegisterUserToDb(name, username,password, mobilenumber);
+            return dal1.GetAllData();
         }
-        public bool LoginUser(string username, string password)
+        public void updateUsers(DataTable userstable)
         {
-            return dal1.ValidateLogin(username, password);
+            dal1.UpdateUsers(userstable);
         }
-
-        public void AddToCart(int productId, int quantity)
+        public void updateorders(DataTable orderstable)
         {
-           
-            dal1.AddToCart( productId, quantity);
-
-            Console.WriteLine("Product added to the cart successfully!");
-        }
-
-        public void PlaceOrder(string orderId, string username, string totalCost, string orderDate)
-        {
-            // Convert totalCost to decimal or float if needed
-            decimal cost = Convert.ToDecimal(totalCost);
-
-            // Call the DAL method to insert the order into the database
-            dal.InsertOrder(orderId, username, cost, orderDate);
+            dal1.updateorders(orderstable);
         }
 
 
-        // Get all users
-        //public DataTable GetUsers()
+        //public void updateProducts(DataTable prod)
         //{
-        //    return dal1.GetUsers();
+        //    dal1.UpdateProducts(prod);
         //}
-
-        //// Get all products
-        //public DataTable GetProducts()
+        //public void updateOrders(DataTable orde)
         //{
-        //    return dal1.GetProducts();
-        //}
-
-        //// Update user data
-        //public void UpdateUsers(DataTable userTable)
-        //{
-        //    dal1.UpdateUsers(userTable);
-        //}
-
-        //// Get cart items
-        //public DataTable GetCart()
-        //{
-        //    return dal1.GetCart();
-        //}
-
-        //// Update cart
-        //public void UpdateCart(DataTable cartTable)
-        //{
-        //    dal1.UpdateCart(cartTable);
-        //}
-
-        //// Get all orders
-        //public DataTable GetOrders()
-        //{
-        //    return dal1.GetOrders();
+        //    dal1.UpdateOrders(orde);
         //}
     }
 }
+    
+
