@@ -238,7 +238,7 @@ namespace UI
             }
             Console.WriteLine("Item added to cart successfully!");
         }
-
+        //
         public void ViewCart()
         {
             List<Product1> prol2 = new List<Product1>();
