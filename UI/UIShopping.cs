@@ -10,6 +10,7 @@ namespace UI
     public class UIShopping
     {
         static string userName;
+
         static void Main(string[] args)
         {
             
