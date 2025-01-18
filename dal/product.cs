@@ -78,4 +78,16 @@ public class ShoppingDal
         }
 
     }
+
+    public void updateproducts(DataTable Producttable)
+    {
+        using (SqlConnection con = new SqlConnection(connectionString))
+        {
+            string query = "select *  from product ";
+            SqlDataAdapter da = new SqlDataAdapter(query, con);
+            SqlCommandBuilder cmd = new SqlCommandBuilder(da);
+            da.Update(Producttable);
+        }
+    }
 }
+

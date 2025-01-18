@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace UI
 {
-    class cart
+  public  class cart
     {
 
        
@@ -21,6 +21,7 @@ namespace UI
         public int Quantity { get; set; }
 
         public int FinalPrice { get; set; }
+     
     }
     public class Product1
     {

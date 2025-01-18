@@ -43,8 +43,6 @@
   <ItemGroup>
     <Compile Include="businesslayer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ShoppingBal.cs" />
-    <Compile Include="ShoppingCartBAL.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\dal\dal.csproj">

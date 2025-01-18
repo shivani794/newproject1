@@ -24,16 +24,10 @@ namespace bal
         {
             dal1.updateorders(orderstable);
         }
-
-
-        //public void updateProducts(DataTable prod)
-        //{
-        //    dal1.UpdateProducts(prod);
-        //}
-        //public void updateOrders(DataTable orde)
-        //{
-        //    dal1.UpdateOrders(orde);
-        //}
+        public void updateProducts(DataTable prod)
+        {
+            dal1.updateproducts(prod);
+        }
     }
 }
     
